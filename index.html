@@ -782,6 +782,90 @@
     </a>
   </div>
 
+  <!-- AI CONCIERGE & REPUTATION SHIELD MODALS -->
+  <!-- 1. AI CONCIERGE FLOATING BUTTON & DRAWER -->
+  <div class="fixed bottom-20 md:bottom-6 right-4 sm:right-6 z-40">
+    <button onclick="toggleChatDrawer()" id="conciergeBubbleBtn" class="bg-espresso hover:bg-terracotta text-crema p-3.5 sm:p-4 rounded-full shadow-2xl border border-sand/40 flex items-center gap-2 group transition-all duration-300 active:scale-95" aria-label="Open Roastery Assistant">
+      <i data-lucide="message-square" class="w-5 h-5 text-brass"></i>
+      <span class="hidden sm:inline font-mono text-xs font-semibold uppercase tracking-wider pr-1">Roastery Assistant</span>
+    </button>
+  </div>
+
+  <!-- AI CONCIERGE CHAT DRAWER -->
+  <div id="chatDrawer" class="fixed bottom-24 md:bottom-20 right-4 sm:right-6 w-[92vw] sm:w-96 bg-crema border-2 border-sand rounded-3xl shadow-2xl z-50 hidden flex-col overflow-hidden max-h-[500px]">
+    <div class="bg-espresso text-parchment p-4 flex justify-between items-center border-b border-parchment/10">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-full bg-brass/20 flex items-center justify-center text-brass">
+          <i data-lucide="bot" class="w-4 h-4"></i>
+        </div>
+        <div>
+          <h4 class="font-serif text-sm font-bold text-crema leading-none">Gaslamp Concierge</h4>
+          <span class="text-[9px] font-mono text-parchment/60 uppercase">24/7 GHL Portfolio Bot</span>
+        </div>
+      </div>
+      <button onclick="toggleChatDrawer()" class="text-parchment/60 hover:text-crema text-lg font-mono">&times;</button>
+    </div>
+
+    <!-- Messages Container -->
+    <div id="chatMessages" class="p-4 space-y-3 overflow-y-auto flex-1 custom-scrollbar text-xs font-mono h-64 bg-crema">
+      <div class="bg-parchment/80 p-3 rounded-2xl border border-sand max-w-[85%] text-espresso">
+        Welcome! Ask me anything about our Gaslamp operating hours, guest Wi-Fi, 4th Ave parking, catering estimates, or roast profiles.
+      </div>
+    </div>
+
+    <!-- Quick Question Chips -->
+    <div class="px-3 py-2 bg-parchment/40 border-t border-sand flex gap-1.5 overflow-x-auto custom-scrollbar text-[10px] font-mono">
+      <button onclick="askQuickQuestion('What are your hours?')" class="bg-crema border border-sand px-2.5 py-1 rounded-full whitespace-nowrap hover:bg-sand">Hours?</button>
+      <button onclick="askQuickQuestion('Do you have Wi-Fi?')" class="bg-crema border border-sand px-2.5 py-1 rounded-full whitespace-nowrap hover:bg-sand">Wi-Fi?</button>
+      <button onclick="askQuickQuestion('Where can I park?')" class="bg-crema border border-sand px-2.5 py-1 rounded-full whitespace-nowrap hover:bg-sand">Parking?</button>
+      <button onclick="askQuickQuestion('Tell me about catering')" class="bg-crema border border-sand px-2.5 py-1 rounded-full whitespace-nowrap hover:bg-sand">Catering?</button>
+    </div>
+
+    <!-- Input Form -->
+    <form onsubmit="handleChatSubmit(event)" class="p-3 border-t border-sand bg-crema flex gap-2">
+      <input type="text" id="chatInput" placeholder="Type a message..." required class="flex-1 bg-parchment/60 border border-sand rounded-xl px-3 py-2 text-xs text-espresso focus:outline-none focus:border-brass">
+      <button type="submit" class="bg-espresso text-crema p-2 rounded-xl hover:bg-terracotta transition-colors">
+        <i data-lucide="send" class="w-4 h-4 text-brass"></i>
+      </button>
+    </form>
+  </div>
+
+  <!-- 2. REPUTATION SHIELD MODAL -->
+  <div id="reviewShieldModal" class="fixed inset-0 z-50 bg-espresso/90 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="closeReviewModal()">
+    <div class="max-w-md w-full bg-crema p-6 sm:p-8 rounded-3xl border border-sand shadow-2xl relative text-center" onclick="event.stopPropagation()">
+      <button onclick="closeReviewModal()" class="absolute top-4 right-4 text-espresso hover:text-terracotta text-lg font-mono">&times;</button>
+      <span class="text-[10px] font-mono uppercase tracking-widest text-terracotta font-semibold">Guest Experience</span>
+      <h3 class="font-serif text-2xl font-bold text-espresso mt-1 mb-2">How was your brew today?</h3>
+      <p class="text-xs text-mutedBrown mb-6">Select a rating to share your feedback with our team.</p>
+
+      <div class="flex justify-center gap-3 mb-6" id="ratingStars">
+        <button onclick="selectRating(1)" class="text-2xl p-2 hover:scale-125 transition-transform" title="1 Star">★</button>
+        <button onclick="selectRating(2)" class="text-2xl p-2 hover:scale-125 transition-transform" title="2 Stars">★</button>
+        <button onclick="selectRating(3)" class="text-2xl p-2 hover:scale-125 transition-transform" title="3 Stars">★</button>
+        <button onclick="selectRating(4)" class="text-2xl p-2 hover:scale-125 transition-transform text-brass font-bold" title="4 Stars">★</button>
+        <button onclick="selectRating(5)" class="text-2xl p-2 hover:scale-125 transition-transform text-brass font-bold" title="5 Stars">★</button>
+      </div>
+
+      <!-- Private Feedback Form (For 1-3 Stars) -->
+      <form id="privateFeedbackForm" class="hidden space-y-3 text-left" onsubmit="handleFeedbackSubmit(event)">
+        <p class="text-xs text-mutedBrown">We are sorry to hear that! Please let management know how we can make it right:</p>
+        <textarea id="feedbackText" placeholder="Your comments..." rows="3" required class="w-full bg-parchment/70 border border-sand rounded-xl p-3 text-xs text-espresso focus:outline-none focus:border-brass"></textarea>
+        <input type="text" id="feedbackName" placeholder="Your Name" class="w-full bg-parchment/70 border border-sand rounded-xl px-3 py-2 text-xs text-espresso focus:outline-none focus:border-brass">
+        <button type="submit" class="w-full bg-espresso hover:bg-terracotta text-crema font-mono text-xs uppercase py-3 rounded-xl transition-colors font-semibold">
+          Send Directly to Manager
+        </button>
+      </form>
+
+      <!-- Google Review Direct Prompt (For 4-5 Stars) -->
+      <div id="positiveReviewBox" class="hidden space-y-4">
+        <p class="text-xs text-emerald-700 font-medium">Thank you so much! Would you mind taking 15 seconds to support us on Google Maps?</p>
+        <a href="https://maps.google.com/?q=Achilles+Coffee+Roasters+Gaslamp" target="_blank" onclick="closeReviewModal()" class="w-full bg-brass hover:bg-sand text-espresso font-mono text-xs uppercase py-3.5 rounded-xl font-bold inline-block transition-colors shadow-md">
+          Post Review on Google Maps &rarr;
+        </a>
+      </div>
+    </div>
+  </div>
+
   <!-- LIGHTBOX MODAL -->
   <div id="lightboxModal" class="fixed inset-0 z-50 bg-espresso/90 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="closeLightbox()">
     <div class="max-w-4xl w-full relative" onclick="event.stopPropagation()">
@@ -1134,6 +1218,97 @@
       closeCateringModal();
       submitBtn.innerHTML = 'Submit to GoHighLevel Pipeline';
       submitBtn.disabled = false;
+    }
+
+    // 10. AI Concierge Bot Functions
+    function toggleChatDrawer() {
+      const drawer = document.getElementById('chatDrawer');
+      drawer.classList.toggle('hidden');
+      drawer.classList.toggle('flex');
+    }
+
+    function askQuickQuestion(question) {
+      document.getElementById('chatInput').value = question;
+      handleChatSubmit(new Event('submit'));
+    }
+
+    async function handleChatSubmit(e) {
+      if (e) e.preventDefault();
+      const input = document.getElementById('chatInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const container = document.getElementById('chatMessages');
+      // User message
+      const userBubble = document.createElement('div');
+      userBubble.className = 'bg-espresso text-crema p-3 rounded-2xl ml-auto max-w-[85%] font-mono text-[11px] shadow-sm';
+      userBubble.textContent = text;
+      container.appendChild(userBubble);
+      input.value = '';
+      container.scrollTop = container.scrollHeight;
+
+      // Typing indicator
+      const typing = document.createElement('div');
+      typing.className = 'text-[10px] text-mutedBrown font-mono italic';
+      typing.textContent = 'Concierge is typing...';
+      container.appendChild(typing);
+
+      try {
+        const res = await fetch('/api/ghl-submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'ai_chat', message: text })
+        });
+        const data = await res.json();
+        container.removeChild(typing);
+
+        const botBubble = document.createElement('div');
+        botBubble.className = 'bg-parchment/90 p-3 rounded-2xl border border-sand max-w-[85%] text-espresso font-mono text-[11px]';
+        botBubble.textContent = data.reply;
+        container.appendChild(botBubble);
+        container.scrollTop = container.scrollHeight;
+      } catch (err) {
+        container.removeChild(typing);
+      }
+    }
+
+    // 11. Reputation Shield Functions
+    function openReviewModal() {
+      document.getElementById('reviewShieldModal').classList.remove('hidden');
+    }
+    function closeReviewModal() {
+      document.getElementById('reviewShieldModal').classList.add('hidden');
+    }
+    async function selectRating(stars) {
+      const isPositive = stars >= 4;
+      document.getElementById('ratingStars').classList.add('hidden');
+
+      if (isPositive) {
+        document.getElementById('positiveReviewBox').classList.remove('hidden');
+      } else {
+        document.getElementById('privateFeedbackForm').classList.remove('hidden');
+      }
+
+      await fetch('/api/ghl-submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'review_shield', rating: stars })
+      });
+    }
+
+    async function handleFeedbackSubmit(e) {
+      e.preventDefault();
+      const text = document.getElementById('feedbackText').value;
+      const name = document.getElementById('feedbackName').value;
+
+      await fetch('/api/ghl-submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'review_shield', rating: 3, feedbackText: text, firstName: name })
+      });
+
+      alert('Thank you! Your feedback has been sent directly to management.');
+      closeReviewModal();
     }
   </script>
 
