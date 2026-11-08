@@ -1,6 +1,6 @@
-// Universal Analytics & Event Tracking Engine for GoHighLevel
+// Real-time Event Tracking & Telemetry Engine for GoHighLevel & Vercel
 // Sub-Account: 5ygjlutXObP4JJaHMD0b (Achilles Coffee Roasters)
-// Admin / Portfolio Routing: gallegoleoppsalm@gmail.com / 09182518515
+// Analytics: Pageviews, Order Clicks, Direction Clicks, Call Clicks, Menu Interactions
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -29,8 +29,10 @@ export default async function handler(req, res) {
     rating, 
     feedbackText, 
     preferredRoast,
-    eventName,
-    metadata 
+    eventType,
+    clickTarget,
+    source,
+    sessionId
   } = req.body;
 
   const GHL_API_KEY = process.env.GHL_API_KEY || "pit-us-d7448cce-4e58-40da-96c3-17e6a77a1321";
@@ -46,9 +48,45 @@ export default async function handler(req, res) {
 
   try {
     // -------------------------------------------------------------
-    // 1. VIP $2.00 VOUCHER LEAD WITH CUSTOM FIELDS
+    // REAL-TIME CLICK & ENGAGEMENT TELEMETRY DISPATCH TO GHL
     // -------------------------------------------------------------
-    if (type === 'vip') {
+    if (type === 'telemetry') {
+      const tagMap = {
+        'pageview': 'stat-pageview',
+        'order_pickup_click': 'intent-order-pickup',
+        'map_directions_click': 'intent-directions',
+        'phone_call_click': 'intent-phone-call',
+        'menu_filter_click': 'engagement-menu',
+        'lofi_audio_click': 'engagement-audio'
+      };
+
+      const tag = tagMap[eventType] || 'stat-site-interaction';
+
+      // Log activity to GHL Contact Aggregate Analytics Profile
+      await fetch("https://services.leadconnectorhq.com/contacts/", {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          firstName: "Live Guest",
+          lastName: "Analytics Session",
+          email: `guest.${sessionId || Date.now()}@gaslamp-visitor.com`,
+          locationId: LOCATION_ID,
+          tags: [tag, "traffic-live-telemetry", "portfolio-lead"],
+          customFields: [
+            { id: "8Z7CGe0meeqwvbqA0iJS", value: new Date().toISOString().split('T')[0] }, // Last Website Activity
+            { id: "vRaRAORnjVPOvPSXqhRu", value: source || "Direct Gaslamp Search" } // Traffic Source
+          ],
+          source: `Event: ${eventType} (${clickTarget || "Website Element"})`
+        })
+      });
+
+      return res.status(200).json({ success: true, event: eventType });
+    }
+
+    // -------------------------------------------------------------
+    // VIP $2.00 VOUCHER LEAD WITH CUSTOM FIELDS
+    // -------------------------------------------------------------
+    else if (type === 'vip') {
       const ghlRes = await fetch("https://services.leadconnectorhq.com/contacts/", {
         method: "POST",
         headers,
@@ -58,9 +96,10 @@ export default async function handler(req, res) {
           email: email,
           phone: phone,
           locationId: LOCATION_ID,
-          tags: ["gaslamp-vip-club", "website-voucher-lead", "portfolio-lead"],
+          tags: ["gaslamp-vip-club", "website-voucher-lead", "portfolio-lead", "intent-order-pickup"],
           customFields: [
-            { id: "8Z7CGe0meeqwvbqA0iJS", value: new Date().toISOString().split('T')[0] } // Last Website Activity
+            { id: "8Z7CGe0meeqwvbqA0iJS", value: new Date().toISOString().split('T')[0] },
+            { id: "vRaRAORnjVPOvPSXqhRu", value: "Website VIP Form" }
           ],
           source: `Portfolio Lead via VIP Voucher (${ADMIN_EMAIL})`
         })
@@ -75,10 +114,9 @@ export default async function handler(req, res) {
     } 
 
     // -------------------------------------------------------------
-    // 2. CATERING DEAL PIPELINE WITH MONETARY VALUE & CUSTOM FIELDS
+    // CATERING DEAL PIPELINE WITH MONETARY VALUE & CUSTOM FIELDS
     // -------------------------------------------------------------
     else if (type === 'catering') {
-      // Step A: Contact with Headcount and Date
       const contactRes = await fetch("https://services.leadconnectorhq.com/contacts/", {
         method: "POST",
         headers,
@@ -88,11 +126,12 @@ export default async function handler(req, res) {
           email: email,
           phone: phone,
           locationId: LOCATION_ID,
-          tags: ["convention-catering", "corporate-catering-lead", "portfolio-lead"],
+          tags: ["convention-catering", "corporate-catering-lead", "portfolio-lead", "intent-high-value"],
           customFields: [
-            { id: "wD58E4nSaysFjqfJKHsU", value: `${guestCount} Guests` }, // Guest Headcount
-            { id: "NlZlGv6XzjnnRS22RutG", value: eventDate }, // Event Date
-            { id: "8Z7CGe0meeqwvbqA0iJS", value: new Date().toISOString().split('T')[0] }
+            { id: "wD58E4nSaysFjqfJKHsU", value: `${guestCount} Guests` },
+            { id: "NlZlGv6XzjnnRS22RutG", value: eventDate },
+            { id: "8Z7CGe0meeqwvbqA0iJS", value: new Date().toISOString().split('T')[0] },
+            { id: "vRaRAORnjVPOvPSXqhRu", value: "Catering Estimator Tool" }
           ],
           source: `Portfolio Catering Lead (${guestCount} Guests - $${estimatedBudget || 425})`
         })
@@ -101,7 +140,6 @@ export default async function handler(req, res) {
       const contactData = await contactRes.json();
       const contactId = contactData.contact ? contactData.contact.id : null;
 
-      // Step B: Opportunity in Corporate & Convention Catering Pipeline
       let opportunityId = null;
       if (contactId) {
         const oppRes = await fetch("https://services.leadconnectorhq.com/opportunities/", {
@@ -109,7 +147,7 @@ export default async function handler(req, res) {
           headers,
           body: JSON.stringify({
             pipelineId: "V9lkMxLvS1I3iPuzwxes",
-            pipelineStageId: "219c77df-d66d-45dd-8dfa-d4e645039758", // Stage: New Inquiry
+            pipelineStageId: "219c77df-d66d-45dd-8dfa-d4e645039758",
             locationId: LOCATION_ID,
             name: `${company || contactName} - Catering (${guestCount} Guests)`,
             status: "open",
@@ -130,7 +168,7 @@ export default async function handler(req, res) {
     }
 
     // -------------------------------------------------------------
-    // 3. REPUTATION SHIELD & CUSTOM NUMERICAL RATING FIELD
+    // REPUTATION SHIELD & CUSTOM NUMERICAL RATING FIELD
     // -------------------------------------------------------------
     else if (type === 'review_shield') {
       const isPositive = parseInt(rating) >= 4;
@@ -146,7 +184,7 @@ export default async function handler(req, res) {
           locationId: LOCATION_ID,
           tags: [tag, "portfolio-lead"],
           customFields: [
-            { id: "wayllip5kOYRtO3KHjgX", value: parseInt(rating) }, // Feedback Rating
+            { id: "wayllip5kOYRtO3KHjgX", value: parseInt(rating) },
             { id: "8Z7CGe0meeqwvbqA0iJS", value: new Date().toISOString().split('T')[0] }
           ],
           source: `Review Shield (${rating} Stars): ${feedbackText || "No comment"}`
@@ -163,32 +201,7 @@ export default async function handler(req, res) {
     }
 
     // -------------------------------------------------------------
-    // 4. DRINK FINDER QUIZ ANALYTICS (Store Customer Preference)
-    // -------------------------------------------------------------
-    else if (type === 'quiz_match') {
-      if (email || phone) {
-        await fetch("https://services.leadconnectorhq.com/contacts/", {
-          method: "POST",
-          headers,
-          body: JSON.stringify({
-            name: firstName || "Quiz Participant",
-            email: email || undefined,
-            phone: phone || undefined,
-            locationId: LOCATION_ID,
-            tags: ["drink-quiz-completed", "portfolio-lead"],
-            customFields: [
-              { id: "58c8VCyB5Uw9bzPbZqQB", value: preferredRoast }, // Preferred Roast
-              { id: "8Z7CGe0meeqwvbqA0iJS", value: new Date().toISOString().split('T')[0] }
-            ],
-            source: `Drink Quiz Match: ${preferredRoast}`
-          })
-        });
-      }
-      return res.status(200).json({ success: true, matched: preferredRoast });
-    }
-
-    // -------------------------------------------------------------
-    // 5. 24/7 AI CONCIERGE CHATBOT
+    // 24/7 AI CONCIERGE CHATBOT
     // -------------------------------------------------------------
     else if (type === 'ai_chat') {
       const userMessage = (req.body.message || "").toLowerCase();
@@ -211,15 +224,6 @@ export default async function handler(req, res) {
       }
 
       return res.status(200).json({ reply });
-    }
-
-    // -------------------------------------------------------------
-    // 6. GENERAL WEBSITE EVENT TRACKING & ANALYTICS
-    // -------------------------------------------------------------
-    else if (type === 'track_event') {
-      // Logs anonymous or identified activity to GHL analytics notes
-      console.log(`[GHL Analytics] Event tracked: ${eventName} - ${JSON.stringify(metadata)}`);
-      return res.status(200).json({ success: true, event: eventName });
     }
 
     return res.status(400).json({ error: "Invalid request type" });

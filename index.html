@@ -1310,6 +1310,55 @@
       alert('Thank you! Your feedback has been sent directly to management.');
       closeReviewModal();
     }
+    // 12. Real-Time Telemetry & Event Analytics to GoHighLevel
+    function trackGhlEvent(eventType, meta = {}) {
+      try {
+        fetch('/api/ghl-submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'telemetry',
+            eventType: eventType,
+            metadata: meta
+          })
+        }).catch(() => {});
+      } catch (e) {}
+    }
+
+    // Auto-track initial pageview
+    window.addEventListener('load', () => {
+      trackGhlEvent('pageview', { path: window.location.pathname, referrer: document.referrer || 'direct' });
+    });
+
+    // Delegated click tracker for conversions and interactions
+    document.addEventListener('click', (e) => {
+      const target = e.target.closest('a, button');
+      if (!target) return;
+
+      const href = target.getAttribute('href') || '';
+      const text = (target.textContent || '').trim().toLowerCase();
+
+      // Track Order Pickup clicks
+      if (href.includes('order') || href.includes('toasttab') || text.includes('order pickup') || text.includes('order online')) {
+        trackGhlEvent('order_pickup_click', { label: text, href: href });
+      }
+      // Track Phone Call intent
+      else if (href.startsWith('tel:')) {
+        trackGhlEvent('phone_call_click', { phone: href });
+      }
+      // Track Map & Directions clicks
+      else if (href.includes('maps.google') || href.includes('goo.gl') || text.includes('directions') || text.includes('get directions')) {
+        trackGhlEvent('map_directions_click', { destination: '372 Fourth Ave' });
+      }
+      // Track Menu Interactions
+      else if (target.hasAttribute('onclick') && target.getAttribute('onclick').includes('filterMenu')) {
+        trackGhlEvent('menu_filter_click', { filter: text });
+      }
+      // Track Lofi Audio Toggle
+      else if (target.id === 'audioToggleBtn' || target.closest('#audioToggleBtn')) {
+        trackGhlEvent('lofi_audio_toggle', { status: 'toggled' });
+      }
+    });
   </script>
 
 </body>
