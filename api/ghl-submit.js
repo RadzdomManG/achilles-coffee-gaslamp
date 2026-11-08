@@ -18,6 +18,7 @@ export default async function handler(req, res) {
   const { type, firstName, phone, email, contactName, company, eventDate, guestCount, notes, estimatedBudget } = req.body;
   const GHL_API_KEY = process.env.GHL_API_KEY || "pit-us-d7448cce-4e58-40da-96c3-17e6a77a1321";
   const LOCATION_ID = "5ygjlutXObP4JJaHMD0b";
+  const NOTIFICATION_EMAIL = "gallegoleoppsalm@gmail.com";
 
   try {
     if (type === 'vip') {
