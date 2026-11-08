@@ -152,18 +152,16 @@
 
 <body class="bg-crema text-espresso font-sans antialiased selection:bg-brass selection:text-espresso pb-24 md:pb-0">
 
-  <!-- TOP LIVE STORE STATUS & NOTIFICATION BAR -->
-  <aside aria-label="Operating Hours Banner" class="bg-espresso text-parchment py-2.5 px-4 border-b border-parchment/10 text-xs">
+  <!-- TOP UTILITY & LOCATION BAR -->
+  <aside aria-label="Location Details" class="bg-espresso text-parchment py-2.5 px-4 border-b border-parchment/10 text-xs">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-      <div class="flex items-center gap-2.5" id="liveStatusContainer">
-        <span class="relative flex h-2.5 w-2.5">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" id="statusDot"></span>
-        </span>
-        <span class="font-mono text-[11px] tracking-wider uppercase font-medium" id="statusText">Checking San Diego Local Time...</span>
+      <div class="flex items-center gap-2 text-[11px] font-mono text-parchment/80">
+        <span>372 Fourth Avenue, San Diego, CA 92101</span>
+        <span class="hidden sm:inline">•</span>
+        <span class="text-sand/80">Gaslamp Quarter</span>
       </div>
       <div class="flex items-center gap-4 text-[11px] text-parchment/70 font-mono">
-        <span class="hidden sm:inline">372 Fourth Ave, San Diego, CA (Gaslamp)</span>
+        <span>Monday – Sunday: 6:30 AM – 3:00 PM</span>
         <span class="hidden md:inline">•</span>
         <a href="tel:6198144243" class="hover:text-brass transition-colors font-semibold flex items-center gap-1.5" aria-label="Direct Phone Line">
           <i data-lucide="phone" class="w-3 h-3 text-brass"></i>
@@ -649,15 +647,11 @@
   <section id="ghl-capture" class="py-20 bg-espresso text-parchment relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
       <div class="max-w-2xl mx-auto text-center mb-10">
-        <div class="inline-flex items-center gap-2 bg-brass/20 text-brass border border-brass/30 px-3.5 py-1.5 rounded-full text-[10px] font-mono uppercase tracking-widest mb-3">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-          <span>Gaslamp VIP Program</span>
-        </div>
         <h2 class="font-display text-3xl sm:text-5xl font-normal text-crema">
-          Claim $2.00 Off Your First Brew
+          $2.00 Welcome Voucher
         </h2>
         <p class="text-parchment/70 text-xs sm:text-sm font-light mt-2 max-w-lg mx-auto">
-          Join our inner circle for weekly single-origin micro-lot releases, secret barista specials, and birthday perks delivered straight to your phone.
+          Join our direct SMS list for weekly single-origin micro-lot releases and a $2.00 voucher for your next Gaslamp visit.
         </p>
       </div>
 
@@ -894,31 +888,7 @@
     // 1. Initialize Lucide Icons
     lucide.createIcons();
 
-    // 2. Real-Time San Diego (PST) Open / Closed Time Checker
-    function updateSanDiegoStoreStatus() {
-      const now = new Date();
-      const options = { timeZone: 'America/Los_Angeles', hour: 'numeric', minute: 'numeric', hour12: false };
-      const timeStr = new Intl.DateTimeFormat([], options).format(now);
-      const [hour, minute] = timeStr.split(':').map(Number);
-      const currentMinutes = hour * 60 + minute;
-
-      const openMinutes = 6 * 60 + 30; // 6:30 AM
-      const closeMinutes = 15 * 60;    // 3:00 PM
-
-      const statusDot = document.getElementById('statusDot');
-      const statusText = document.getElementById('statusText');
-
-      if (currentMinutes >= openMinutes && currentMinutes < closeMinutes) {
-        statusDot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500';
-        statusText.innerHTML = '<span class="text-emerald-400 font-bold">Open Now in Gaslamp</span> • Closes at 3:00 PM PST (Scratch Kitchen Open)';
-      } else {
-        statusDot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500';
-        statusText.innerHTML = '<span class="text-amber-400 font-bold">Currently Closed</span> • Opens Daily at 6:30 AM PST (372 Fourth Ave)';
-      }
-    }
-    updateSanDiegoStoreStatus();
-
-    // 3. Initialize Lenis Smooth Scroll
+    // 2. Initialize Lenis Smooth Scroll
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
