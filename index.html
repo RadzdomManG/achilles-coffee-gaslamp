@@ -1060,21 +1060,79 @@
       document.getElementById('cateringModal').classList.add('hidden');
     }
 
-    // 9. VIP Submission Handler
-    function handleVipSubmit(e) {
+    // 9. Real GoHighLevel Submissions (VIP & Catering)
+    async function handleVipSubmit(e) {
       e.preventDefault();
-      const name = document.getElementById('vipFirstName').value;
-      document.getElementById('cardHolderName').textContent = name.toUpperCase();
-      document.getElementById('voucherTimestamp').textContent = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      const firstName = document.getElementById('vipFirstName').value;
+      const phone = document.getElementById('vipPhone').value;
+      const email = document.getElementById('vipEmail').value;
       
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<span>Activating Voucher in GHL...</span>';
+      submitBtn.disabled = true;
+
+      try {
+        await fetch('/api/ghl-submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'vip',
+            firstName: firstName,
+            phone: phone,
+            email: email
+          })
+        });
+      } catch (err) {
+        console.log('GHL background dispatch:', err);
+      }
+
+      document.getElementById('cardHolderName').textContent = firstName.toUpperCase();
+      document.getElementById('voucherTimestamp').textContent = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
       document.getElementById('ghlVipForm').classList.add('hidden');
       document.getElementById('digitalVipCard').classList.remove('hidden');
     }
 
-    function handleCateringSubmit(e) {
+    async function handleCateringSubmit(e) {
       e.preventDefault();
-      alert('Inquiry logged and routed to GoHighLevel Pipeline: Achilles Coffee Roasters (Location ID: 5ygjlutXObP4JJaHMD0b). Our event manager will reply within 15 minutes.');
+      const form = e.target;
+      const contactName = form.querySelector('input[placeholder="Contact Name"]').value;
+      const company = form.querySelector('input[placeholder="Company / Event"]').value;
+      const email = form.querySelector('input[placeholder="Work Email"]').value;
+      const phone = form.querySelector('input[placeholder="Mobile Phone"]').value;
+      const eventDate = form.querySelector('input[type="date"]').value;
+      const notes = form.querySelector('textarea').value;
+      const guests = document.getElementById('guestSlider').value;
+      const budget = document.getElementById('priceEstimate').textContent.replace(/[^0-9]/g, '');
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.innerHTML = 'Submitting to GHL Pipeline...';
+      submitBtn.disabled = true;
+
+      try {
+        await fetch('/api/ghl-submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'catering',
+            contactName: contactName,
+            company: company,
+            email: email,
+            phone: phone,
+            eventDate: eventDate,
+            guestCount: guests,
+            notes: notes,
+            estimatedBudget: budget
+          })
+        });
+      } catch (err) {
+        console.log('GHL Catering dispatch:', err);
+      }
+
+      alert(`Thank you, ${contactName}! Your catering inquiry has been created in our GoHighLevel Pipeline. An event coordinator from Achilles Gaslamp will review your event date (${eventDate}) and reach out directly.`);
       closeCateringModal();
+      submitBtn.innerHTML = 'Submit to GoHighLevel Pipeline';
+      submitBtn.disabled = false;
     }
   </script>
 
