@@ -1,0 +1,86 @@
+/* 
+  ACHILLES COFFEE ROASTERS - ULTRA BESPOKE ARTISAN STYLESHEET
+  Handcrafted Design Tokens, Zero Generic AI Gradients, Pure Editorial Craft.
+*/
+
+:root {
+  --color-crema: #FAF7F2;
+  --color-parchment: #F3EDE2;
+  --color-sand: #E6DCB8;
+  --color-espresso: #1A1412;
+  --color-roast: #2B1E19;
+  --color-terracotta: #A64B2A;
+  --color-brass: #C89D5C;
+  --color-brass-glow: rgba(200, 157, 92, 0.15);
+  --color-muted-brown: #6B584E;
+}
+
+/* 1. Bespoke Custom Subtle Dot-Matrix Texture */
+.analog-canvas {
+  background-color: var(--color-crema);
+  background-image: 
+    radial-gradient(rgba(26, 20, 18, 0.04) 1px, transparent 0),
+    linear-gradient(to bottom, rgba(250, 247, 242, 0.8), rgba(250, 247, 242, 1));
+  background-size: 28px 28px, 100% 100%;
+}
+
+/* 2. Editorial Image Framing with Archival Border */
+.editorial-frame {
+  position: relative;
+  background-color: var(--color-parchment);
+  border: 1px solid var(--color-sand);
+  padding: 10px;
+  box-shadow: 0 10px 30px -10px rgba(26, 20, 18, 0.08);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-frame:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -15px rgba(26, 20, 18, 0.12);
+}
+
+.editorial-frame::after {
+  content: attr(data-caption);
+  position: absolute;
+  bottom: -22px;
+  left: 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-muted-brown);
+}
+
+/* 3. Magnetic Hover & Smooth Micro-State */
+.magnetic-btn {
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), background-color 0.2s ease, border-color 0.2s ease;
+  will-change: transform;
+}
+.magnetic-btn:hover {
+  transform: translateY(-1.5px);
+}
+.magnetic-btn:active {
+  transform: translateY(0.5px) scale(0.98);
+}
+
+/* 4. Editorial Archival Stamp */
+.archival-stamp {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-terracotta);
+  color: var(--color-terracotta);
+  padding: 2px 8px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* 5. Fluid Responsive Typography */
+@media (max-width: 640px) {
+  .hero-headline {
+    font-size: 2.5rem !important;
+    line-height: 1.08 !important;
+  }
+}

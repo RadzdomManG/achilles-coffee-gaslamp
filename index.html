@@ -127,6 +127,9 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 
+  <!-- EDITORIAL CRAFT STYLESHEET (BESPOKE TOKENS & ARCHIVAL STYLING) -->
+  <link rel="stylesheet" href="assets/css/editorial.css">
+
   <style>
     /* Organic Tactile Paper Surface */
     .film-grain {
@@ -285,20 +288,25 @@
         <div class="lg:col-span-5 relative">
           <div class="relative mx-auto max-w-md lg:max-w-none">
             
-            <div class="rounded-3xl overflow-hidden shadow-2xl border-2 border-sand bg-parchment aspect-[4/5] relative group cursor-pointer" onclick="openLightbox('assets/images/achilles-store-1.jpg', 'Achilles Coffee Roasters Gaslamp Interior and Espresso Bar')">
+            <div class="editorial-frame rounded-2xl overflow-hidden aspect-[4/5] relative group cursor-pointer" data-caption="32°42'33.0&quot;N 117°09'40.4&quot;W • GASLAMP QUARTER ROASTERY" onclick="openLightbox('assets/images/achilles-store-1.jpg', 'Achilles Coffee Roasters Gaslamp Interior and Espresso Bar')">
               <img 
                 src="assets/images/achilles-store-1.jpg" 
                 alt="Achilles Coffee Roasters Gaslamp Interior and Espresso Bar" 
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 rounded-xl"
                 width="800"
                 height="1000"
                 loading="eager"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-espresso/85 via-espresso/20 to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-espresso/85 via-espresso/20 to-transparent rounded-xl"></div>
               
-              <div class="absolute top-4 right-4 bg-espresso/80 text-parchment text-[10px] font-mono px-2.5 py-1 rounded-full flex items-center gap-1 backdrop-blur">
+              <div class="absolute top-4 right-4 bg-espresso/80 text-parchment text-[10px] font-mono px-2.5 py-1 rounded-full flex items-center gap-1 backdrop-blur border border-parchment/20">
                 <i data-lucide="maximize-2" class="w-3 h-3 text-brass"></i>
                 <span>Tap to Expand</span>
+              </div>
+
+              <!-- Archival Serial Stamp -->
+              <div class="absolute top-4 left-4">
+                <span class="archival-stamp bg-crema/90 backdrop-blur">BATCH ROAST NO. 04</span>
               </div>
 
               <!-- Floating Card Badge -->
@@ -314,8 +322,8 @@
               </div>
             </div>
 
-            <div class="absolute -top-4 -right-4 w-28 h-28 border-2 border-brass/40 rounded-full -z-10 hidden sm:block"></div>
-            <div class="absolute -bottom-6 -left-6 w-36 h-36 bg-sand/40 rounded-full blur-2xl -z-10"></div>
+            <div class="absolute -top-4 -right-4 w-28 h-28 border border-brass/30 rounded-full -z-10 hidden sm:block"></div>
+            <div class="absolute -bottom-6 -left-6 w-36 h-36 bg-sand/30 rounded-full blur-2xl -z-10"></div>
           </div>
         </div>
 
@@ -399,11 +407,11 @@
 
       <!-- Menu Category Tabs -->
       <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-10 custom-scrollbar" id="menuTabs">
-        <button onclick="filterMenu('all')" class="tab-btn active px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold bg-espresso text-crema transition-all shrink-0">All Offerings</button>
-        <button onclick="filterMenu('coffee')" class="tab-btn px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold bg-parchment text-espresso hover:bg-sand transition-all shrink-0">Espresso & Specialty</button>
-        <button onclick="filterMenu('coldbrew')" class="tab-btn px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold bg-parchment text-espresso hover:bg-sand transition-all shrink-0">Nitro & Cold Brews</button>
-        <button onclick="filterMenu('burritos')" class="tab-btn px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold bg-parchment text-espresso hover:bg-sand transition-all shrink-0">Burritos & Bowls</button>
-        <button onclick="filterMenu('sandwiches')" class="tab-btn px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold bg-parchment text-espresso hover:bg-sand transition-all shrink-0">Sandwiches & Bagels</button>
+        <button onclick="filterMenu('all')" class="tab-btn magnetic-btn active px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold bg-espresso text-crema transition-all shrink-0">All Offerings</button>
+        <button onclick="filterMenu('coffee')" class="tab-btn magnetic-btn px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold bg-parchment text-espresso hover:bg-sand transition-all shrink-0">Espresso & Specialty</button>
+        <button onclick="filterMenu('coldbrew')" class="tab-btn magnetic-btn px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold bg-parchment text-espresso hover:bg-sand transition-all shrink-0">Nitro & Cold Brews</button>
+        <button onclick="filterMenu('burritos')" class="tab-btn magnetic-btn px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold bg-parchment text-espresso hover:bg-sand transition-all shrink-0">Burritos & Bowls</button>
+        <button onclick="filterMenu('sandwiches')" class="tab-btn magnetic-btn px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold bg-parchment text-espresso hover:bg-sand transition-all shrink-0">Sandwiches & Bagels</button>
       </div>
 
       <!-- Menu Items Grid -->
