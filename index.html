@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Achilles Coffee Roasters | Gaslamp Quarter, San Diego</title>
-  <meta name="description" content="Artisan small-batch coffee roaster and scratch kitchen nestled in San Diego's historic Gaslamp Quarter. Single origin espresso, cold brews, and breakfast.">
+  <meta name="description" content="Artisan small-batch coffee roaster and scratch kitchen at 372 Fourth Ave in San Diego's historic Gaslamp Quarter. Single-origin espresso, nitro cold brews, and signature breakfast.">
   
+  <!-- Favicon using official brand logo -->
+  <link rel="icon" type="image/png" href="assets/images/achilles-logo.png">
+
   <!-- Google Fonts: Cormorant Garamond (Editorial Serif) & Plus Jakarta Sans (Clean Modern Sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,8 +20,8 @@
     "@context": "https://schema.org",
     "@type": "CafeOrCoffeeShop",
     "name": "Achilles Coffee Roasters Gaslamp",
-    "image": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb",
-    "url": "https://achillescoffeeroasters.com",
+    "image": "https://achillescoffeeroasters.com/cdn/shop/files/achilles_logo_updated-07.png",
+    "url": "https://achilles-gaslamp-web.vercel.app",
     "telephone": "+16198144243",
     "priceRange": "$$",
     "address": {
@@ -42,10 +45,10 @@
         "closes": "15:00"
       }
     ],
-    "servesCuisine": ["Coffee", "Espresso", "Breakfast Burritos", "Artisan Sandwiches", "Cold Brew"]
+    "servesCuisine": ["Specialty Coffee", "Single Origin Espresso", "Scratch Breakfast Burritos", "Artisan Brioche Sandwiches", "Nitro Cold Brew"]
   }
   </script>
-  
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -81,7 +84,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 
   <style>
-    /* Grain texture overlay for genuine analog / human tactile feel */
+    /* Analog Tactile Grain Texture Overlay (Anti-AI feel) */
     .film-grain {
       background-image: radial-gradient(rgba(43, 30, 25, 0.04) 1px, transparent 0);
       background-size: 24px 24px;
@@ -102,130 +105,135 @@
 
 <body class="bg-crema text-espresso font-sans antialiased selection:bg-brass selection:text-espresso">
 
-  <!-- TOP ANNOUNCEMENT & HOURS BAR -->
-  <aside aria-label="Announcement" class="bg-espresso text-parchment text-xs tracking-wider uppercase py-2 px-4 border-b border-espresso/10">
+  <!-- TOP LIVE STORE STATUS & NOTIFICATION BAR -->
+  <aside aria-label="Store Status" class="bg-espresso text-parchment py-2.5 px-4 border-b border-parchment/10 text-xs">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-      <div class="flex items-center gap-2">
-        <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span class="font-medium tracking-widest text-[11px]">Gaslamp Quarter Roastery • Open Daily 6:30 AM – 3:00 PM</span>
+      <div class="flex items-center gap-2.5" id="liveStatusContainer">
+        <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" id="statusDot"></span>
+        <span class="font-mono text-[11px] tracking-wider uppercase font-medium" id="statusText">Checking San Diego Time...</span>
       </div>
       <div class="flex items-center gap-4 text-[11px] text-parchment/70 font-mono">
-        <span>372 Fourth Ave, San Diego, CA</span>
+        <span>372 Fourth Ave, San Diego, CA (Gaslamp)</span>
         <span class="hidden md:inline">•</span>
-        <a href="tel:6198144243" class="hover:text-brass transition-colors">(619) 814-4243</a>
+        <a href="tel:6198144243" class="hover:text-brass transition-colors font-semibold">(619) 814-4243</a>
       </div>
     </div>
   </aside>
 
   <!-- NAVIGATION -->
-  <header class="sticky top-0 z-50 bg-crema/90 backdrop-blur-md border-b border-parchment transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <!-- Brand Logo / Wordmark -->
-      <a href="#" class="flex flex-col group">
-        <span class="font-serif text-2xl sm:text-3xl font-semibold tracking-tight text-espresso group-hover:text-terracotta transition-colors">
-          ACHILLES
-        </span>
-        <span class="font-mono text-[9px] uppercase tracking-[0.3em] text-mutedBrown -mt-1">
-          Coffee Roasters • San Diego
-        </span>
+  <header class="sticky top-0 z-50 bg-crema/90 backdrop-blur-md border-b border-sand transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 py-3.5 flex items-center justify-between">
+      
+      <!-- Official Brand Logo & Wordmark -->
+      <a href="#" class="flex items-center gap-3 group">
+        <img src="assets/images/achilles-logo.png" alt="Achilles Coffee Roasters Official Logo" class="h-10 w-10 object-contain rounded-full border border-sand shadow-sm group-hover:scale-105 transition-transform">
+        <div class="flex flex-col">
+          <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-espresso group-hover:text-terracotta transition-colors leading-none">
+            ACHILLES
+          </span>
+          <span class="font-mono text-[9px] uppercase tracking-[0.25em] text-mutedBrown mt-0.5">
+            Coffee Roasters • Gaslamp SD
+          </span>
+        </div>
       </a>
 
       <!-- Desktop Nav Links -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
-        <a href="#about" class="text-espresso/80 hover:text-espresso relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-brass hover:after:w-full after:transition-all">The Craft</a>
-        <a href="#menu" class="text-espresso/80 hover:text-espresso relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-brass hover:after:w-full after:transition-all">Roastery Menu</a>
-        <a href="#gaslamp" class="text-espresso/80 hover:text-espresso relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-brass hover:after:w-full after:transition-all">Gaslamp Vibe</a>
-        <a href="#location" class="text-espresso/80 hover:text-espresso relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-brass hover:after:w-full after:transition-all">Visit Us</a>
+      <nav class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-widest font-medium">
+        <a href="#about" class="text-espresso/80 hover:text-espresso relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-brass hover:after:w-full after:transition-all">The Roastery</a>
+        <a href="#menu" class="text-espresso/80 hover:text-espresso relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-brass hover:after:w-full after:transition-all">Gaslamp Menu</a>
+        <a href="#ghl-capture" class="text-espresso/80 hover:text-espresso relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-brass hover:after:w-full after:transition-all">VIP & Catering</a>
+        <a href="#location" class="text-espresso/80 hover:text-espresso relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-brass hover:after:w-full after:transition-all">Visit & Hours</a>
       </nav>
 
-      <!-- Action Buttons -->
+      <!-- Action Button -->
       <div class="flex items-center gap-3">
-        <a href="https://order.online" target="_blank" rel="noopener noreferrer" 
+        <a href="https://order.online/business/achilles-coffee-roasters-gaslamp-11440620" target="_blank" rel="noopener noreferrer" 
            class="inline-flex items-center gap-2 bg-espresso text-crema hover:bg-terracotta text-xs font-semibold uppercase tracking-wider px-5 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all duration-200">
-          <span>Order Pickup</span>
-          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          <span>Order Ahead</span>
+          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-brass"></i>
         </a>
       </div>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="relative film-grain pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
+  <!-- HERO SECTION: AUTHENTIC GASLAMP SANCTUARY -->
+  <section class="relative film-grain pt-12 pb-20 md:pt-16 md:pb-24 overflow-hidden border-b border-sand">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
         
-        <!-- Left Content -->
+        <!-- Left Column: Copy & Value Proposition -->
         <div class="lg:col-span-7 space-y-6">
-          <div class="inline-flex items-center gap-2 bg-parchment/80 border border-sand px-3.5 py-1.5 rounded-full text-xs font-mono text-mutedBrown">
+          <div class="inline-flex items-center gap-2 bg-parchment border border-sand px-3.5 py-1.5 rounded-full text-xs font-mono text-mutedBrown">
             <i data-lucide="map-pin" class="w-3.5 h-3.5 text-terracotta"></i>
-            <span>Historic Gaslamp Quarter, Downtown SD</span>
+            <span>372 Fourth Ave • Ground Floor, 4th & J Apartments</span>
           </div>
 
           <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal leading-[1.08] tracking-tight text-espresso">
             Small-batch roasted. <br>
-            <span class="italic font-normal text-terracotta">Honestly crafted</span> in the heart of San Diego.
+            <span class="italic font-normal text-terracotta">Honestly crafted</span> in the heart of Gaslamp.
           </h1>
 
           <p class="text-mutedBrown text-base sm:text-lg max-w-xl font-light leading-relaxed">
-            From single-origin pour-overs and signature nitro cold brews to made-from-scratch breakfast burritos and artisan brioche sandwiches. No shortcuts, just good coffee and warm hospitality.
+            Welcome to Achilles Coffee Roasters Gaslamp. Micro-batch roasted coffee, signature 20-hour cold brews, and real scratch-kitchen breakfast made fresh every single morning.
           </p>
 
-          <!-- CTAs -->
-          <div class="pt-4 flex flex-wrap items-center gap-4">
-            <a href="#menu" class="bg-espresso text-parchment hover:bg-terracotta px-7 py-3.5 rounded-full text-sm font-medium tracking-wide transition-colors duration-200 inline-flex items-center gap-2 shadow-sm">
-              <span>Explore The Menu</span>
-              <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          <!-- Action Buttons -->
+          <div class="pt-2 flex flex-wrap items-center gap-4">
+            <a href="#menu" class="bg-espresso text-parchment hover:bg-terracotta px-7 py-3.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold transition-colors duration-200 inline-flex items-center gap-2 shadow-sm">
+              <span>View Official Menu</span>
+              <i data-lucide="arrow-down" class="w-4 h-4 text-brass"></i>
             </a>
-            <a href="#location" class="border border-espresso/30 hover:border-espresso text-espresso px-7 py-3.5 rounded-full text-sm font-medium tracking-wide transition-colors duration-200">
+            <a href="#location" class="border border-espresso/30 hover:border-espresso text-espresso px-7 py-3.5 rounded-full text-xs font-mono uppercase tracking-wider font-medium transition-colors duration-200">
               Directions & Hours
             </a>
           </div>
 
-          <!-- Quick Badges -->
-          <div class="pt-8 grid grid-cols-3 gap-4 border-t border-espresso/10 text-center sm:text-left">
+          <!-- Verified Roastery Badges -->
+          <div class="pt-8 grid grid-cols-3 gap-4 border-t border-sand text-left">
             <div>
-              <p class="font-serif text-2xl text-espresso font-semibold">100%</p>
-              <p class="text-[11px] font-mono uppercase tracking-wider text-mutedBrown">Micro-Batch Roasts</p>
+              <p class="font-serif text-2xl text-espresso font-bold">100%</p>
+              <p class="text-[11px] font-mono uppercase tracking-wider text-mutedBrown">Direct Sourced</p>
             </div>
             <div>
-              <p class="font-serif text-2xl text-espresso font-semibold">Scratch</p>
+              <p class="font-serif text-2xl text-espresso font-bold">Scratch</p>
               <p class="text-[11px] font-mono uppercase tracking-wider text-mutedBrown">Kitchen Daily</p>
             </div>
             <div>
-              <p class="font-serif text-2xl text-espresso font-semibold">Gaslamp</p>
-              <p class="text-[11px] font-mono uppercase tracking-wider text-mutedBrown">4th Ave Neighborhood</p>
+              <p class="font-serif text-2xl text-espresso font-bold">Gaslamp</p>
+              <p class="text-[11px] font-mono uppercase tracking-wider text-mutedBrown">4th & J St Corner</p>
             </div>
           </div>
         </div>
 
-        <!-- Right Visual Showcase -->
+        <!-- Right Column: Real Official Photo Card -->
         <div class="lg:col-span-5 relative">
           <div class="relative mx-auto max-w-md lg:max-w-none">
-            <!-- Main Hero Image Frame -->
-            <div class="rounded-2xl overflow-hidden shadow-2xl border border-sand bg-parchment aspect-[4/5] relative group">
+            
+            <!-- Real Achilles Roastery Photo Frame -->
+            <div class="rounded-3xl overflow-hidden shadow-2xl border-2 border-sand bg-parchment aspect-[4/5] relative group">
               <img 
-                src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1000&q=80" 
-                alt="Achilles Coffee Roasters Gaslamp Ambience" 
+                src="assets/images/achilles-store-1.jpg" 
+                alt="Achilles Coffee Roasters Gaslamp Interior and Espresso Bar" 
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-espresso/85 via-espresso/20 to-transparent"></div>
               
               <!-- Floating Card Badge -->
-              <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-crema/95 backdrop-blur border border-sand/80 shadow-lg">
+              <div class="absolute bottom-6 left-6 right-6 p-5 rounded-2xl bg-crema/95 backdrop-blur border border-sand shadow-lg">
                 <div class="flex items-center justify-between">
                   <div>
-                    <span class="text-[10px] font-mono uppercase tracking-widest text-terracotta font-semibold">Featured Daily Cold Brew</span>
-                    <h3 class="font-serif text-lg font-bold text-espresso">Finest City Nitro Cold Brew</h3>
-                    <p class="text-xs text-mutedBrown">Steeped 20 hours • Velvety crema head</p>
+                    <span class="text-[10px] font-mono uppercase tracking-widest text-terracotta font-semibold">Test Kitchen Favorite</span>
+                    <h3 class="font-serif text-xl font-bold text-espresso">Barrio Breakfast Burrito</h3>
+                    <p class="text-xs text-mutedBrown">Flame-grilled carne asada, crispy potatoes, white cheddar</p>
                   </div>
-                  <span class="font-mono text-sm font-semibold text-espresso bg-sand/40 px-2.5 py-1 rounded-md">$5.75</span>
+                  <span class="font-mono text-base font-bold text-espresso bg-sand/50 px-3 py-1.5 rounded-lg">$18.60</span>
                 </div>
               </div>
             </div>
 
-            <!-- Accent aesthetic element -->
-            <div class="absolute -top-4 -right-4 w-24 h-24 border-2 border-brass/40 rounded-full -z-10 hidden sm:block"></div>
-            <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-sand/30 rounded-full blur-2xl -z-10"></div>
+            <!-- Subtle background accent circles -->
+            <div class="absolute -top-4 -right-4 w-28 h-28 border-2 border-brass/40 rounded-full -z-10 hidden sm:block"></div>
+            <div class="absolute -bottom-6 -left-6 w-36 h-36 bg-sand/40 rounded-full blur-2xl -z-10"></div>
           </div>
         </div>
 
@@ -234,10 +242,11 @@
   </section>
 
   <!-- ETHOS / PILLARS SECTION -->
-  <section id="about" class="py-20 bg-parchment/60 border-y border-sand">
+  <section id="about" class="py-20 bg-parchment/60 border-b border-sand">
     <div class="max-w-7xl mx-auto px-6">
+      
       <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="font-mono text-xs uppercase tracking-[0.25em] text-terracotta font-semibold">The Achilles Philosophy</span>
+        <span class="font-mono text-xs uppercase tracking-[0.25em] text-terracotta font-semibold">Our Gaslamp Standards</span>
         <h2 class="font-serif text-3xl sm:text-5xl font-normal text-espresso mt-2">
           Grounded in simplicity, dedicated to the roast.
         </h2>
@@ -245,177 +254,237 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
         <!-- Pillar 1 -->
-        <div class="bg-crema p-8 rounded-2xl border border-sand shadow-sm hover:shadow-md transition-shadow">
-          <div class="w-12 h-12 rounded-xl bg-sand/50 flex items-center justify-center text-terracotta mb-6">
+        <div class="bg-crema p-8 rounded-3xl border border-sand shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 rounded-2xl bg-sand/50 flex items-center justify-center text-terracotta mb-6">
             <i data-lucide="coffee" class="w-6 h-6"></i>
           </div>
-          <h3 class="font-serif text-xl font-semibold text-espresso mb-2">Direct & Micro-Batch Roasting</h3>
+          <h3 class="font-serif text-2xl font-semibold text-espresso mb-2">Micro-Lot Precision</h3>
           <p class="text-mutedBrown text-sm leading-relaxed font-light">
-            We source green beans responsibly from sustainable farms worldwide, roasting them in precise, small batches in San Diego to honor the terroir of each origin.
+            We source green beans responsibly from sustainable estates in Kenya, Ethiopia, and Guatemala, roasting in small batches right here in San Diego to honor the terroir of each origin.
           </p>
         </div>
 
         <!-- Pillar 2 -->
-        <div class="bg-crema p-8 rounded-2xl border border-sand shadow-sm hover:shadow-md transition-shadow">
-          <div class="w-12 h-12 rounded-xl bg-sand/50 flex items-center justify-center text-terracotta mb-6">
+        <div class="bg-crema p-8 rounded-3xl border border-sand shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 rounded-2xl bg-sand/50 flex items-center justify-center text-terracotta mb-6">
             <i data-lucide="utensils" class="w-6 h-6"></i>
           </div>
-          <h3 class="font-serif text-xl font-semibold text-espresso mb-2">Scratch Kitchen, Real Fuel</h3>
+          <h3 class="font-serif text-2xl font-semibold text-espresso mb-2">Real Scratch Kitchen</h3>
           <p class="text-mutedBrown text-sm leading-relaxed font-light">
-            Unlike cafes that defrost frozen pastries, our kitchen cooks real eggs, heirloom tomatoes, house garlic aioli, and sourdough brioche every single morning.
+            No frozen thawed pastries. Our Gaslamp location operates as our test kitchen—cooking cage-free eggs, house garlic aioli, fig jam pretzel buns, and toasted brioche every morning.
           </p>
         </div>
 
         <!-- Pillar 3 -->
-        <div class="bg-crema p-8 rounded-2xl border border-sand shadow-sm hover:shadow-md transition-shadow">
-          <div class="w-12 h-12 rounded-xl bg-sand/50 flex items-center justify-center text-terracotta mb-6">
-            <i data-lucide="heart" class="w-6 h-6"></i>
+        <div class="bg-crema p-8 rounded-3xl border border-sand shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 rounded-2xl bg-sand/50 flex items-center justify-center text-terracotta mb-6">
+            <i data-lucide="wifi" class="w-6 h-6"></i>
           </div>
-          <h3 class="font-serif text-xl font-semibold text-espresso mb-2">Gaslamp Community Living Room</h3>
+          <h3 class="font-serif text-2xl font-semibold text-espresso mb-2">Sanctuary & High-Speed Wi-Fi</h3>
           <p class="text-mutedBrown text-sm leading-relaxed font-light">
-            Conveniently situated on 4th Ave. A calm, welcoming retreat from the bustling downtown streets—equipped with cozy spots to read, meet, or work with reliable Wi-Fi.
+            A calm, light-filled refuge from the downtown rush. Equipped with spacious seating, charging outlets, and fast guest Wi-Fi for remote work, meetings, or quiet mornings.
           </p>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- INTERACTIVE MENU SECTION -->
+  <!-- OFFICIAL GASLAMP ROASTERY MENU SECTION -->
   <section id="menu" class="py-24 film-grain">
     <div class="max-w-7xl mx-auto px-6">
       
       <!-- Section Header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-espresso/10 pb-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-sand pb-6">
         <div>
-          <span class="font-mono text-xs uppercase tracking-[0.25em] text-terracotta font-semibold">Crafted Daily in Gaslamp</span>
-          <h2 class="font-serif text-4xl sm:text-5xl font-normal text-espresso mt-1">Roastery & Kitchen Menu</h2>
+          <span class="font-mono text-xs uppercase tracking-[0.25em] text-terracotta font-semibold">Verified Gaslamp Location Menu</span>
+          <h2 class="font-serif text-4xl sm:text-5xl font-normal text-espresso mt-1">Roastery & Kitchen Offerings</h2>
         </div>
-        <p class="text-mutedBrown text-sm max-w-sm mt-4 md:mt-0 font-light">
-          House syrups, single-origin espresso, and local ingredients made-to-order.
-        </p>
+        <div class="text-mutedBrown text-xs font-mono mt-4 md:mt-0">
+          <span class="bg-sand/60 px-3 py-1.5 rounded-full text-espresso font-semibold">Gluten-Free & Dairy-Free Available</span>
+        </div>
       </div>
 
       <!-- Menu Category Tabs -->
-      <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-10 custom-scrollbar" id="menuTabs">
-        <button onclick="filterMenu('all')" class="tab-btn active px-5 py-2 rounded-full text-xs font-mono uppercase tracking-wider font-medium bg-espresso text-crema transition-all">All Items</button>
-        <button onclick="filterMenu('coffee')" class="tab-btn px-5 py-2 rounded-full text-xs font-mono uppercase tracking-wider font-medium bg-parchment text-espresso hover:bg-sand transition-all">Espresso & Coffee</button>
-        <button onclick="filterMenu('coldbrew')" class="tab-btn px-5 py-2 rounded-full text-xs font-mono uppercase tracking-wider font-medium bg-parchment text-espresso hover:bg-sand transition-all">Cold Brews & Nitro</button>
-        <button onclick="filterMenu('breakfast')" class="tab-btn px-5 py-2 rounded-full text-xs font-mono uppercase tracking-wider font-medium bg-parchment text-espresso hover:bg-sand transition-all">Breakfast & Plates</button>
-        <button onclick="filterMenu('sandwiches')" class="tab-btn px-5 py-2 rounded-full text-xs font-mono uppercase tracking-wider font-medium bg-parchment text-espresso hover:bg-sand transition-all">Artisan Sandwiches</button>
+      <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-12 custom-scrollbar" id="menuTabs">
+        <button onclick="filterMenu('all')" class="tab-btn active px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold bg-espresso text-crema transition-all">All Items</button>
+        <button onclick="filterMenu('coffee')" class="tab-btn px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold bg-parchment text-espresso hover:bg-sand transition-all">Espresso & Specialty Lattes</button>
+        <button onclick="filterMenu('coldbrew')" class="tab-btn px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold bg-parchment text-espresso hover:bg-sand transition-all">Nitro & Cold Brews</button>
+        <button onclick="filterMenu('burritos')" class="tab-btn px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold bg-parchment text-espresso hover:bg-sand transition-all">Scratch Burritos & Bowls</button>
+        <button onclick="filterMenu('sandwiches')" class="tab-btn px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold bg-parchment text-espresso hover:bg-sand transition-all">San Diego Sandwiches & Bagels</button>
       </div>
 
-      <!-- Menu Grid Items -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8" id="menuContainer">
+      <!-- Verified Menu Grid (From Exact Achilles Gaslamp Menu) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-14 gap-y-10" id="menuContainer">
         
-        <!-- Coffee Items -->
+        <!-- ================= COFFEE & ESPRESSO ================= -->
         <div class="menu-item coffee flex justify-between items-start pb-6 border-b border-sand group">
-          <div class="space-y-1 pr-4">
+          <div class="space-y-1.5 pr-4">
             <div class="flex items-center gap-2">
-              <h4 class="font-serif text-xl font-medium text-espresso group-hover:text-terracotta transition-colors">Honey Cinnamon Latte</h4>
-              <span class="text-[9px] font-mono uppercase tracking-widest bg-sand/60 px-2 py-0.5 rounded text-espresso">Signature</span>
+              <h4 class="font-serif text-2xl font-semibold text-espresso group-hover:text-terracotta transition-colors">Honey Cinnamon Latte</h4>
+              <span class="text-[9px] font-mono uppercase tracking-widest bg-sand/70 text-espresso px-2 py-0.5 rounded font-semibold">Signature</span>
             </div>
-            <p class="text-xs text-mutedBrown leading-relaxed">Raw local honey, warm cinnamon bark, double espresso, silky microfoam.</p>
+            <p class="text-xs text-mutedBrown leading-relaxed">Raw local honey, warm cinnamon bark, double espresso, and silky textured microfoam.</p>
           </div>
-          <span class="font-mono text-sm font-semibold text-espresso">$6.25</span>
+          <span class="font-mono text-sm font-bold text-espresso bg-sand/40 px-2.5 py-1 rounded-md">$6.25</span>
         </div>
 
         <div class="menu-item coffee flex justify-between items-start pb-6 border-b border-sand group">
-          <div class="space-y-1 pr-4">
+          <div class="space-y-1.5 pr-4">
             <div class="flex items-center gap-2">
-              <h4 class="font-serif text-xl font-medium text-espresso group-hover:text-terracotta transition-colors">Pistachio Latte</h4>
-              <span class="text-[9px] font-mono uppercase tracking-widest bg-sand/60 px-2 py-0.5 rounded text-espresso">Guest Fav</span>
+              <h4 class="font-serif text-2xl font-semibold text-espresso group-hover:text-terracotta transition-colors">House Vanilla Bean Latte</h4>
             </div>
-            <p class="text-xs text-mutedBrown leading-relaxed">House-crafted roasted pistachio reduction, whole milk, double shot espresso.</p>
+            <p class="text-xs text-mutedBrown leading-relaxed">Madagascar vanilla bean syrup steeped in-house, double shot espresso, and choice of milk.</p>
           </div>
-          <span class="font-mono text-sm font-semibold text-espresso">$6.50</span>
+          <span class="font-mono text-sm font-bold text-espresso bg-sand/40 px-2.5 py-1 rounded-md">$6.25</span>
         </div>
 
         <div class="menu-item coffee flex justify-between items-start pb-6 border-b border-sand group">
-          <div class="space-y-1 pr-4">
-            <h4 class="font-serif text-xl font-medium text-espresso group-hover:text-terracotta transition-colors">Single Origin Cortado</h4>
-            <p class="text-xs text-mutedBrown leading-relaxed">Equal parts double espresso and warm textured milk (4oz) in Gibraltar glass.</p>
+          <div class="space-y-1.5 pr-4">
+            <div class="flex items-center gap-2">
+              <h4 class="font-serif text-2xl font-semibold text-espresso group-hover:text-terracotta transition-colors">Single Origin Cortado</h4>
+              <span class="text-[9px] font-mono uppercase tracking-widest bg-sand/70 text-espresso px-2 py-0.5 rounded font-semibold">Barista Choice</span>
+            </div>
+            <p class="text-xs text-mutedBrown leading-relaxed">Equal parts double espresso and warm steamed milk (4oz) served in a classic Gibraltar glass.</p>
           </div>
-          <span class="font-mono text-sm font-semibold text-espresso">$4.75</span>
+          <span class="font-mono text-sm font-bold text-espresso bg-sand/40 px-2.5 py-1 rounded-md">$5.40</span>
         </div>
 
         <div class="menu-item coffee flex justify-between items-start pb-6 border-b border-sand group">
-          <div class="space-y-1 pr-4">
-            <h4 class="font-serif text-xl font-medium text-espresso group-hover:text-terracotta transition-colors">House Vanilla Bean Latte</h4>
-            <p class="text-xs text-mutedBrown leading-relaxed">Madagascar vanilla bean syrup brewed in-house, espresso, steamed milk.</p>
+          <div class="space-y-1.5 pr-4">
+            <h4 class="font-serif text-2xl font-semibold text-espresso group-hover:text-terracotta transition-colors">Espresso Double Shot</h4>
+            <p class="text-xs text-mutedBrown leading-relaxed">Crafted with single-origin beans, presenting rich golden crema, bright citrus, and chocolate undertones.</p>
           </div>
-          <span class="font-mono text-sm font-semibold text-espresso">$5.95</span>
+          <span class="font-mono text-sm font-bold text-espresso bg-sand/40 px-2.5 py-1 rounded-md">$5.10</span>
         </div>
 
-        <!-- Cold Brews -->
+        <div class="menu-item coffee flex justify-between items-start pb-6 border-b border-sand group">
+          <div class="space-y-1.5 pr-4">
+            <h4 class="font-serif text-2xl font-semibold text-espresso group-hover:text-terracotta transition-colors">Ceremonial Matcha Latte</h4>
+            <p class="text-xs text-mutedBrown leading-relaxed">Stone-ground Japanese green tea whisked with silky steamed milk and subtle sweetness.</p>
+          </div>
+          <span class="font-mono text-sm font-bold text-espresso bg-sand/40 px-2.5 py-1 rounded-md">$6.50</span>
+        </div>
+
+        <div class="menu-item coffee flex justify-between items-start pb-6 border-b border-sand group">
+          <div class="space-y-1.5 pr-4">
+            <h4 class="font-serif text-2xl font-semibold text-espresso group-hover:text-terracotta transition-colors">Dirty Spiced Chai</h4>
+            <p class="text-xs text-mutedBrown leading-relaxed">Slow-brewed masala chai tea, aromatic spices, and a fresh shot of single-origin espresso.</p>
+          </div>
+          <span class="font-mono text-sm font-bold text-espresso bg-sand/40 px-2.5 py-1 rounded-md">$6.60</span>
+        </div>
+
+        <!-- ================= COLD BREWS ================= -->
         <div class="menu-item coldbrew flex justify-between items-start pb-6 border-b border-sand group">
-          <div class="space-y-1 pr-4">
+          <div class="space-y-1.5 pr-4">
             <div class="flex items-center gap-2">
-              <h4 class="font-serif text-xl font-medium text-espresso group-hover:text-terracotta transition-colors">The Aztec Cold Brew</h4>
-              <span class="text-[9px] font-mono uppercase tracking-widest bg-sand/60 px-2 py-0.5 rounded text-espresso">Specialty</span>
+              <h4 class="font-serif text-2xl font-semibold text-espresso group-hover:text-terracotta transition-colors">Finest City Nitro Cold Brew</h4>
+              <span class="text-[9px] font-mono uppercase tracking-widest bg-sand/70 text-espresso px-2 py-0.5 rounded font-semibold">House Nitro</span>
             </div>
-            <p class="text-xs text-mutedBrown leading-relaxed">Achilles cold brew with Mexican chocolate, cinnamon spice, and cream cap.</p>
+            <p class="text-xs text-mutedBrown leading-relaxed">Steeped cold for 20 hours and infused with nitrogen for an ultra-velvety, cascading crema head.</p>
           </div>
-          <span class="font-mono text-sm font-semibold text-espresso">$6.25</span>
+          <span class="font-mono text-sm font-bold text-espresso bg-sand/40 px-2.5 py-1 rounded-md">$5.75</span>
         </div>
 
         <div class="menu-item coldbrew flex justify-between items-start pb-6 border-b border-sand group">
-          <div class="space-y-1 pr-4">
-            <h4 class="font-serif text-xl font-medium text-espresso group-hover:text-terracotta transition-colors">El Cortez Nitro Cold Brew</h4>
-            <p class="text-xs text-mutedBrown leading-relaxed">Infused with pure nitrogen for a creamy Guinness-like mouthfeel, chocolate notes.</p>
-          </div>
-          <span class="font-mono text-sm font-semibold text-espresso">$5.75</span>
-        </div>
-
-        <!-- Breakfast & Plates -->
-        <div class="menu-item breakfast flex justify-between items-start pb-6 border-b border-sand group">
-          <div class="space-y-1 pr-4">
+          <div class="space-y-1.5 pr-4">
             <div class="flex items-center gap-2">
-              <h4 class="font-serif text-xl font-medium text-espresso group-hover:text-terracotta transition-colors">Gaslamp Breakfast Burrito</h4>
-              <span class="text-[9px] font-mono uppercase tracking-widest bg-sand/60 px-2 py-0.5 rounded text-espresso">Best Seller</span>
+              <h4 class="font-serif text-2xl font-semibold text-espresso group-hover:text-terracotta transition-colors">The Aztec Cold Brew</h4>
+              <span class="text-[9px] font-mono uppercase tracking-widest bg-sand/70 text-espresso px-2 py-0.5 rounded font-semibold">Specialty</span>
             </div>
-            <p class="text-xs text-mutedBrown leading-relaxed">Cage-free scrambled eggs, roasted potatoes, heirloom tomato, white cheddar, onions, salsa verde.</p>
+            <p class="text-xs text-mutedBrown leading-relaxed">Achilles cold brew with Mexican chocolate, cinnamon spice infusion, and cold sweet cream cap.</p>
           </div>
-          <span class="font-mono text-sm font-semibold text-espresso">$12.50</span>
+          <span class="font-mono text-sm font-bold text-espresso bg-sand/40 px-2.5 py-1 rounded-md">$6.25</span>
         </div>
 
-        <div class="menu-item breakfast flex justify-between items-start pb-6 border-b border-sand group">
-          <div class="space-y-1 pr-4">
-            <h4 class="font-serif text-xl font-medium text-espresso group-hover:text-terracotta transition-colors">Organic Acai Super Bowl</h4>
-            <p class="text-xs text-mutedBrown leading-relaxed">Pure Sambazon acai blend, organic hemp granola, fresh bananas, berries, raw honey drizzle.</p>
-          </div>
-          <span class="font-mono text-sm font-semibold text-espresso">$11.75</span>
-        </div>
-
-        <!-- Sandwiches -->
-        <div class="menu-item sandwiches flex justify-between items-start pb-6 border-b border-sand group">
-          <div class="space-y-1 pr-4">
+        <!-- ================= SCRATCH BURRITOS & BOWLS ================= -->
+        <div class="menu-item burritos flex justify-between items-start pb-6 border-b border-sand group">
+          <div class="space-y-1.5 pr-4">
             <div class="flex items-center gap-2">
-              <h4 class="font-serif text-xl font-medium text-espresso group-hover:text-terracotta transition-colors">Harbor Island Brioche</h4>
-              <span class="text-[9px] font-mono uppercase tracking-widest bg-sand/60 px-2 py-0.5 rounded text-espresso">House Classic</span>
+              <h4 class="font-serif text-2xl font-semibold text-espresso group-hover:text-terracotta transition-colors">Barrio Breakfast Burrito</h4>
+              <span class="text-[9px] font-mono uppercase tracking-widest bg-sand/70 text-espresso px-2 py-0.5 rounded font-semibold">Gaslamp Icon</span>
             </div>
-            <p class="text-xs text-mutedBrown leading-relaxed">2 fluffy scrambled eggs, smoked ham, aged white cheddar, heirloom tomato, house garlic aioli on buttery brioche.</p>
+            <p class="text-xs text-mutedBrown leading-relaxed">Flame-grilled carne asada, aged white cheddar, crispy potatoes, fresh tomato, onion, avocado, and sour cream in a warm flour tortilla.</p>
           </div>
-          <span class="font-mono text-sm font-semibold text-espresso">$13.25</span>
+          <span class="font-mono text-sm font-bold text-espresso bg-sand/40 px-2.5 py-1 rounded-md">$18.60</span>
+        </div>
+
+        <div class="menu-item burritos flex justify-between items-start pb-6 border-b border-sand group">
+          <div class="space-y-1.5 pr-4">
+            <div class="flex items-center gap-2">
+              <h4 class="font-serif text-2xl font-semibold text-espresso group-hover:text-terracotta transition-colors">Gaslamp Breakfast Burrito</h4>
+            </div>
+            <p class="text-xs text-mutedBrown leading-relaxed">Cage-free scrambled eggs, fresh spinach, heirloom tomato, roasted breakfast potatoes, onion, white cheddar, and choice of bacon or sausage with salsa.</p>
+          </div>
+          <span class="font-mono text-sm font-bold text-espresso bg-sand/40 px-2.5 py-1 rounded-md">$15.60</span>
+        </div>
+
+        <div class="menu-item burritos flex justify-between items-start pb-6 border-b border-sand group">
+          <div class="space-y-1.5 pr-4">
+            <div class="flex items-center gap-2">
+              <h4 class="font-serif text-2xl font-semibold text-espresso group-hover:text-terracotta transition-colors">Organic Acai Super Bowl</h4>
+              <span class="text-[9px] font-mono uppercase tracking-widest bg-sand/70 text-espresso px-2 py-0.5 rounded font-semibold">Healthy</span>
+            </div>
+            <p class="text-xs text-mutedBrown leading-relaxed">Pure organic acai blend, hemp seed granola, sliced bananas, seasonal fresh berries, coconut flakes, and raw local honey.</p>
+          </div>
+          <span class="font-mono text-sm font-bold text-espresso bg-sand/40 px-2.5 py-1 rounded-md">$15.60</span>
+        </div>
+
+        <!-- ================= SANDWICHES & BAGELS ================= -->
+        <div class="menu-item sandwiches flex justify-between items-start pb-6 border-b border-sand group">
+          <div class="space-y-1.5 pr-4">
+            <div class="flex items-center gap-2">
+              <h4 class="font-serif text-2xl font-semibold text-espresso group-hover:text-terracotta transition-colors">Harbor Island Brioche</h4>
+              <span class="text-[9px] font-mono uppercase tracking-widest bg-sand/70 text-espresso px-2 py-0.5 rounded font-semibold">House Classic</span>
+            </div>
+            <p class="text-xs text-mutedBrown leading-relaxed">Two fluffy scrambled eggs, smoked ham, aged white cheddar, heirloom tomato, and house garlic aioli on buttery grilled brioche bread.</p>
+          </div>
+          <span class="font-mono text-sm font-bold text-espresso bg-sand/40 px-2.5 py-1 rounded-md">$15.90</span>
         </div>
 
         <div class="menu-item sandwiches flex justify-between items-start pb-6 border-b border-sand group">
-          <div class="space-y-1 pr-4">
-            <h4 class="font-serif text-xl font-medium text-espresso group-hover:text-terracotta transition-colors">Banker’s Hill Pretzel Sandwich</h4>
-            <p class="text-xs text-mutedBrown leading-relaxed">Over-medium egg, applewood bacon, roasted turkey, white cheddar, fresh baby spinach, fig jam on pretzel bun.</p>
+          <div class="space-y-1.5 pr-4">
+            <div class="flex items-center gap-2">
+              <h4 class="font-serif text-2xl font-semibold text-espresso group-hover:text-terracotta transition-colors">Banker’s Hill Pretzel Sandwich</h4>
+              <span class="text-[9px] font-mono uppercase tracking-widest bg-sand/70 text-espresso px-2 py-0.5 rounded font-semibold">Guest Favorite</span>
+            </div>
+            <p class="text-xs text-mutedBrown leading-relaxed">Over-medium egg, applewood smoked bacon, roasted turkey, white cheddar, fresh baby spinach, and sweet fig jam on a toasted pretzel bun.</p>
           </div>
-          <span class="font-mono text-sm font-semibold text-espresso">$13.95</span>
+          <span class="font-mono text-sm font-bold text-espresso bg-sand/40 px-2.5 py-1 rounded-md">$16.80</span>
+        </div>
+
+        <div class="menu-item sandwiches flex justify-between items-start pb-6 border-b border-sand group">
+          <div class="space-y-1.5 pr-4">
+            <div class="flex items-center gap-2">
+              <h4 class="font-serif text-2xl font-semibold text-espresso group-hover:text-terracotta transition-colors">The Cove Smoked Salmon Bagel</h4>
+            </div>
+            <p class="text-xs text-mutedBrown leading-relaxed">Toasted artisan bagel layered with wild smoked salmon, dijon dill cream cheese, pickled red onions, capers, and fresh lemon.</p>
+          </div>
+          <span class="font-mono text-sm font-bold text-espresso bg-sand/40 px-2.5 py-1 rounded-md">$16.20</span>
+        </div>
+
+        <div class="menu-item sandwiches flex justify-between items-start pb-6 border-b border-sand group">
+          <div class="space-y-1.5 pr-4">
+            <div class="flex items-center gap-2">
+              <h4 class="font-serif text-2xl font-semibold text-espresso group-hover:text-terracotta transition-colors">Solana Beach Avocado Bagel</h4>
+            </div>
+            <p class="text-xs text-mutedBrown leading-relaxed">Warm over-medium egg, smoked ham, creamy havarti cheese, fresh Hass avocado, and house sriracha aioli on a toasted bagel.</p>
+          </div>
+          <span class="font-mono text-sm font-bold text-espresso bg-sand/40 px-2.5 py-1 rounded-md">$15.90</span>
         </div>
 
       </div>
 
-      <!-- Online Order CTA banner -->
-      <div class="mt-16 p-8 rounded-2xl bg-espresso text-parchment flex flex-col md:flex-row items-center justify-between gap-6">
+      <!-- Quick Action Callout -->
+      <div class="mt-16 p-8 sm:p-10 rounded-3xl bg-espresso text-parchment flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
-          <h3 class="font-serif text-2xl font-normal">Need coffee on the go?</h3>
-          <p class="text-parchment/70 text-xs sm:text-sm font-light mt-1">Skip the wait. Order online ahead for quick pickup at our 4th Ave counter.</p>
+          <h3 class="font-serif text-3xl font-normal text-crema">Ordering for rapid pickup?</h3>
+          <p class="text-parchment/70 text-xs sm:text-sm font-light mt-1">Skip the morning line. Order directly through our dedicated Gaslamp pickup storefront.</p>
         </div>
-        <a href="https://order.online" target="_blank" rel="noopener noreferrer" class="bg-brass text-espresso hover:bg-sand px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-wider transition-colors shrink-0">
+        <a href="https://order.online/business/achilles-coffee-roasters-gaslamp-11440620" target="_blank" rel="noopener noreferrer" 
+           class="bg-brass text-espresso hover:bg-sand px-8 py-3.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold transition-colors shrink-0 shadow-md">
           Order for Pickup
         </a>
       </div>
@@ -423,9 +492,10 @@
     </div>
   </section>
 
-  <!-- GASLAMP NEIGHBORHOOD ATMOSPHERE SECTION -->
-  <section id="gaslamp" class="py-20 bg-parchment/40 border-t border-sand">
+  <!-- AUTHENTIC GASLAMP INTERIOR & TEAM SHOWCASE -->
+  <section class="py-20 bg-parchment/50 border-y border-sand">
     <div class="max-w-7xl mx-auto px-6">
+      
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         <div class="lg:col-span-5 space-y-6">
@@ -434,31 +504,31 @@
             A quiet sanctuary amidst the historic gaslamp bustle.
           </h2>
           <p class="text-mutedBrown text-sm leading-relaxed font-light">
-            Steps away from Petco Park and the San Diego Convention Center. Whether you’re meeting colleagues before a conference, catching up on morning emails, or enjoying a slow Sunday pour-over, our Fourth Ave roastery is crafted for you.
+            Situated just blocks from Petco Park and the San Diego Convention Center. Whether you’re stopping by for a cortado before an event, meeting colleagues for lunch, or settling in with high-speed Wi-Fi, our Fourth Ave test kitchen is built to welcome you.
           </p>
           
-          <ul class="space-y-3 pt-2 text-sm text-espresso font-medium">
+          <ul class="space-y-3 pt-2 text-xs font-mono uppercase tracking-wider text-espresso font-semibold">
             <li class="flex items-center gap-3">
               <i data-lucide="check" class="w-4 h-4 text-terracotta"></i>
-              <span>High-speed guest Wi-Fi & workspace seating</span>
+              <span>High-speed guest Wi-Fi & laptop seating</span>
             </li>
             <li class="flex items-center gap-3">
               <i data-lucide="check" class="w-4 h-4 text-terracotta"></i>
-              <span>Fresh whole bean roasts available by the bag</span>
+              <span>Whole bean 10oz bags available in store</span>
             </li>
             <li class="flex items-center gap-3">
               <i data-lucide="check" class="w-4 h-4 text-terracotta"></i>
-              <span>Walking distance from Gaslamp trolley & hotels</span>
+              <span>Walking distance from Petco Park & Trolley</span>
             </li>
           </ul>
         </div>
 
         <div class="lg:col-span-7 grid grid-cols-2 gap-4">
-          <div class="rounded-2xl overflow-hidden aspect-square border border-sand shadow-sm">
-            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="Espresso Bar" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+          <div class="rounded-3xl overflow-hidden aspect-square border-2 border-sand shadow-sm group">
+            <img src="assets/images/achilles-interior.jpg" alt="Achilles Coffee Interior Seating" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
           </div>
-          <div class="rounded-2xl overflow-hidden aspect-square border border-sand shadow-sm">
-            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Cafe Seating" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+          <div class="rounded-3xl overflow-hidden aspect-square border-2 border-sand shadow-sm group">
+            <img src="assets/images/achilles-barista.jpg" alt="Achilles Coffee Barista Crafting Pour-Over" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
           </div>
         </div>
 
@@ -466,56 +536,125 @@
     </div>
   </section>
 
-  <!-- LOCATION, HOURS & CONTACT -->
-  <section id="location" class="py-20 film-grain border-t border-sand">
-    <div class="max-w-7xl mx-auto px-6">
-      
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <!-- Info column -->
-        <div class="lg:col-span-5 space-y-8">
-          <div>
-            <span class="font-mono text-xs uppercase tracking-[0.25em] text-terracotta font-semibold">Find Us</span>
-            <h2 class="font-serif text-3xl sm:text-4xl font-normal text-espresso mt-1">Visit The Roastery</h2>
+  <!-- GHL INTEGRATIONS: VIP SMS CLUB & CONVENTION CATERING -->
+  <section id="ghl-capture" class="py-20 bg-espresso text-parchment relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        
+        <!-- Left: VIP Coffee Club (GoHighLevel SMS Retention) -->
+        <div class="bg-crema/5 border border-parchment/10 p-8 sm:p-10 rounded-3xl backdrop-blur-sm">
+          <div class="inline-flex items-center gap-2 bg-brass/20 text-brass border border-brass/30 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest mb-4">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            <span>Achilles Gaslamp VIP Club</span>
+          </div>
+          <h3 class="font-serif text-3xl font-normal text-crema mb-2">Claim \$2 Off Your First Brew</h3>
+          <p class="text-parchment/70 text-xs sm:text-sm font-light mb-6 leading-relaxed">
+            Join our inner circle for weekly single-origin micro-lot releases, secret barista drink drops, and birthday rewards sent straight to your phone.
+          </p>
+
+          <form id="ghlVipForm" class="space-y-3" onsubmit="event.preventDefault(); alert('Demo: Connected to GoHighLevel Webhook! Contact will receive an instant $2 discount voucher SMS.');">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <input type="text" placeholder="First Name" required class="w-full bg-crema/10 border border-parchment/20 rounded-xl px-4 py-3 text-xs text-crema placeholder-parchment/40 focus:outline-none focus:border-brass transition-colors">
+              <input type="tel" placeholder="Mobile Number (for SMS)" required class="w-full bg-crema/10 border border-parchment/20 rounded-xl px-4 py-3 text-xs text-crema placeholder-parchment/40 focus:outline-none focus:border-brass transition-colors">
+            </div>
+            <input type="email" placeholder="Email Address" required class="w-full bg-crema/10 border border-parchment/20 rounded-xl px-4 py-3 text-xs text-crema placeholder-parchment/40 focus:outline-none focus:border-brass transition-colors">
+            
+            <!-- Honeypot Bot Field (Invisible to human users) -->
+            <input type="text" name="hp_company_field" style="position: absolute; left: -9999px; display: none;" tabindex="-1" autocomplete="off">
+
+            <button type="submit" class="w-full bg-brass hover:bg-brass/90 text-espresso text-xs font-mono uppercase tracking-wider font-bold py-3.5 rounded-xl transition-all shadow-md">
+              Get \$2 VIP SMS Voucher
+            </button>
+            <p class="text-[10px] text-parchment/40 text-center font-mono">By subscribing, you agree to receive promotional texts from Achilles Roasters Gaslamp. Reply STOP to cancel.</p>
+          </form>
+        </div>
+
+        <!-- Right: Corporate & Convention Center Catering (GHL High-Ticket Pipeline) -->
+        <div class="space-y-6">
+          <div class="inline-flex items-center gap-2 text-brass text-xs font-mono tracking-widest uppercase font-semibold">
+            <i data-lucide="briefcase" class="w-4 h-4"></i>
+            <span>Convention Center & Corporate Catering</span>
+          </div>
+          <h2 class="font-serif text-3xl sm:text-5xl font-normal leading-tight text-crema">
+            Bringing specialty coffee & scratch food to your team.
+          </h2>
+          <p class="text-parchment/70 text-sm font-light leading-relaxed">
+            Located just blocks from the San Diego Convention Center and downtown offices, we provide fresh pour-over carafes, cold brew growlers, scratch breakfast burritos, and artisan sandwich platters for 10 to 250+ guests.
+          </p>
+
+          <div class="rounded-2xl overflow-hidden border border-parchment/10 aspect-[16/9] mb-4">
+            <img src="assets/images/group-orders.jpg" alt="Achilles Coffee Catering and Group Orders" class="w-full h-full object-cover">
           </div>
 
-          <div class="space-y-4">
-            <div class="flex items-start gap-3">
-              <div class="w-9 h-9 rounded-full bg-sand/60 flex items-center justify-center text-espresso shrink-0 mt-0.5">
-                <i data-lucide="map-pin" class="w-4 h-4"></i>
-              </div>
-              <div>
-                <p class="font-serif text-lg font-medium text-espresso">Gaslamp Quarter</p>
-                <p class="text-xs text-mutedBrown leading-relaxed">372 Fourth Ave, San Diego, CA 92101</p>
-                <a href="https://maps.google.com/?q=372+Fourth+Ave+San+Diego+CA" target="_blank" class="inline-block mt-1 text-xs font-mono text-terracotta hover:underline">Open in Google Maps &rarr;</a>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3">
-              <div class="w-9 h-9 rounded-full bg-sand/60 flex items-center justify-center text-espresso shrink-0 mt-0.5">
-                <i data-lucide="clock" class="w-4 h-4"></i>
-              </div>
-              <div>
-                <p class="font-serif text-lg font-medium text-espresso">Hours of Operation</p>
-                <p class="text-xs text-mutedBrown leading-relaxed">Monday – Sunday: 6:30 AM – 3:00 PM</p>
-                <p class="text-[11px] font-mono text-terracotta mt-0.5">Kitchen serves scratch menu until close</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3">
-              <div class="w-9 h-9 rounded-full bg-sand/60 flex items-center justify-center text-espresso shrink-0 mt-0.5">
-                <i data-lucide="phone" class="w-4 h-4"></i>
-              </div>
-              <div>
-                <p class="font-serif text-lg font-medium text-espresso">Direct Line</p>
-                <a href="tel:6198144243" class="text-xs text-mutedBrown hover:text-espresso leading-relaxed">(619) 814-4243</a>
-              </div>
+          <div class="pt-2 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+            <a href="mailto:events@achillescoffeeroasters.com?subject=Gaslamp%20Catering%20Inquiry" class="inline-flex items-center justify-center gap-2 bg-crema text-espresso hover:bg-parchment px-6 py-3.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold transition-colors shadow-sm">
+              <span>Request Catering Quote</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-terracotta"></i>
+            </a>
+            <div class="flex items-center gap-2 text-xs font-mono text-parchment/60">
+              <i data-lucide="clock" class="w-4 h-4 text-brass"></i>
+              <span>Instant response via GHL Workflow within 15 mins</span>
             </div>
           </div>
         </div>
 
-        <!-- Map Embed -->
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION, HOURS & INTERACTIVE GASLAMP MAP -->
+  <section id="location" class="py-20 film-grain border-t border-sand">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Info Column -->
+        <div class="lg:col-span-5 space-y-8">
+          <div>
+            <span class="font-mono text-xs uppercase tracking-[0.25em] text-terracotta font-semibold">Visit The Roastery</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-normal text-espresso mt-1">Gaslamp Quarter Location</h2>
+          </div>
+
+          <div class="space-y-5">
+            
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-full bg-sand/60 flex items-center justify-center text-espresso shrink-0 mt-0.5">
+                <i data-lucide="map-pin" class="w-5 h-5 text-terracotta"></i>
+              </div>
+              <div>
+                <p class="font-serif text-xl font-semibold text-espresso">372 Fourth Avenue</p>
+                <p class="text-xs text-mutedBrown leading-relaxed">Corner of 4th & J St (Ground Floor, 4th & J Apts)<br>San Diego, CA 92101</p>
+                <a href="https://maps.google.com/?q=372+Fourth+Ave+San+Diego+CA" target="_blank" rel="noopener noreferrer" class="inline-block mt-1 text-xs font-mono text-terracotta hover:underline font-medium">Open in Google Maps &rarr;</a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-full bg-sand/60 flex items-center justify-center text-espresso shrink-0 mt-0.5">
+                <i data-lucide="clock" class="w-5 h-5 text-terracotta"></i>
+              </div>
+              <div>
+                <p class="font-serif text-xl font-semibold text-espresso">Daily Operating Hours</p>
+                <p class="text-xs text-mutedBrown leading-relaxed">Monday – Sunday: 6:30 AM – 3:00 PM</p>
+                <p class="text-[11px] font-mono text-terracotta mt-0.5 font-medium">Kitchen prepares scratch food until close</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-full bg-sand/60 flex items-center justify-center text-espresso shrink-0 mt-0.5">
+                <i data-lucide="phone" class="w-5 h-5 text-terracotta"></i>
+              </div>
+              <div>
+                <p class="font-serif text-xl font-semibold text-espresso">Direct Line</p>
+                <a href="tel:6198144243" class="text-xs text-mutedBrown hover:text-espresso leading-relaxed font-mono font-medium">(619) 814-4243</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Google Map Embed -->
         <div class="lg:col-span-7">
-          <div class="rounded-2xl overflow-hidden border border-sand shadow-sm bg-parchment h-80 lg:h-full min-h-[320px] relative">
+          <div class="rounded-3xl overflow-hidden border-2 border-sand shadow-sm bg-parchment h-80 lg:h-full min-h-[340px] relative">
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3356.920807095697!2d-117.16340728481977!3d32.7091704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80d9535a014c0001%3A0x5981bf66de1246cf!2sAchilles%20Coffee%20Roasters%20Gaslamp!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" 
               width="100%" 
@@ -533,106 +672,76 @@
     </div>
   </section>
 
-  <!-- GHL HIGH-VALUE INTEGRATIONS: VIP CLUB & CATERING INQUIRY -->
-  <section id="ghl-capture" class="py-20 bg-espresso text-parchment border-t border-parchment/10 relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        
-        <!-- Left: VIP Coffee Club (GHL SMS Retention) -->
-        <div class="bg-crema/5 border border-parchment/10 p-8 sm:p-10 rounded-3xl backdrop-blur-sm">
-          <div class="inline-flex items-center gap-2 bg-brass/20 text-brass border border-brass/30 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest mb-4">
-            <i data-lucide="sparkles" class="w-3 h-3"></i>
-            <span>Achilles Gaslamp VIP Club</span>
-          </div>
-          <h3 class="font-serif text-3xl font-normal text-crema mb-2">Get \$2 Off Your First Brew</h3>
-          <p class="text-parchment/70 text-xs sm:text-sm font-light mb-6 leading-relaxed">
-            Join our inner circle for weekly single-origin micro-lot releases, secret barista specials, and birthday perks delivered straight to your phone.
-          </p>
-
-          <form id="ghlVipForm" class="space-y-3" onsubmit="event.preventDefault(); alert('Demo: Connected to GoHighLevel Webhook! Customer tagged with [lead-vip-club] and sent $2 discount SMS voucher.');">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <input type="text" placeholder="First Name" required class="w-full bg-crema/10 border border-parchment/20 rounded-xl px-4 py-3 text-xs text-crema placeholder-parchment/40 focus:outline-none focus:border-brass transition-colors">
-              <input type="tel" placeholder="Mobile Number (for SMS)" required class="w-full bg-crema/10 border border-parchment/20 rounded-xl px-4 py-3 text-xs text-crema placeholder-parchment/40 focus:outline-none focus:border-brass transition-colors">
-            </div>
-            <input type="email" placeholder="Email Address" required class="w-full bg-crema/10 border border-parchment/20 rounded-xl px-4 py-3 text-xs text-crema placeholder-parchment/40 focus:outline-none focus:border-brass transition-colors">
-            <button type="submit" class="w-full bg-brass hover:bg-brass/90 text-espresso text-xs font-semibold uppercase tracking-wider py-3.5 rounded-xl transition-all shadow-md">
-              Claim \$2 VIP Voucher (SMS)
-            </button>
-            <p class="text-[10px] text-parchment/40 text-center font-mono">By subscribing, you agree to receive promotional texts from Achilles Roasters. Reply STOP to cancel.</p>
-          </form>
-        </div>
-
-        <!-- Right: Corporate & Convention Catering (GHL High-Ticket Pipeline) -->
-        <div class="space-y-6">
-          <div class="inline-flex items-center gap-2 text-brass text-xs font-mono tracking-widest uppercase">
-            <i data-lucide="briefcase" class="w-4 h-4"></i>
-            <span>San Diego Convention & Office Catering</span>
-          </div>
-          <h2 class="font-serif text-3xl sm:text-5xl font-normal leading-tight text-crema">
-            Bringing artisan coffee to your team or private event.
-          </h2>
-          <p class="text-parchment/70 text-sm font-light leading-relaxed">
-            Located just blocks from the San Diego Convention Center and downtown offices, we provide fresh pour-over carafes, cold brew growlers, scratch breakfast burritos, and artisan sandwich platters for 10 to 250+ guests.
-          </p>
-
-          <div class="pt-2 flex flex-col sm:flex-row gap-4">
-            <a href="mailto:events@achillescoffeeroasters.com?subject=Gaslamp%20Catering%20Inquiry" class="inline-flex items-center justify-center gap-2 bg-crema text-espresso hover:bg-parchment px-6 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-colors shadow-sm">
-              <span>Request Catering Quote</span>
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </a>
-            <div class="flex items-center gap-2 text-xs font-mono text-parchment/60 py-2">
-              <i data-lucide="clock" class="w-4 h-4 text-brass"></i>
-              <span>GHL Instant Quote Response within 15 mins</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
   <!-- MOBILE STICKY FLOATING ACTION BAR (responsive-mobile-viewport & restaurant-conversion-ux) -->
   <div class="md:hidden fixed bottom-4 left-4 right-4 z-50 flex items-center gap-2 bg-espresso/95 backdrop-blur-md p-2 rounded-2xl border border-sand/30 shadow-2xl">
-    <a href="https://order.online" target="_blank" rel="noopener noreferrer" class="flex-1 bg-brass text-espresso text-center py-3 rounded-xl font-mono text-xs font-semibold uppercase tracking-wider shadow-sm flex items-center justify-center gap-1.5">
+    <a href="https://order.online/business/achilles-coffee-roasters-gaslamp-11440620" target="_blank" rel="noopener noreferrer" class="flex-1 bg-brass text-espresso text-center py-3 rounded-xl font-mono text-xs font-bold uppercase tracking-wider shadow-sm flex items-center justify-center gap-1.5">
       <i data-lucide="coffee" class="w-4 h-4"></i>
       <span>Order Pickup</span>
     </a>
     <a href="https://maps.google.com/?q=372+Fourth+Ave+San+Diego+CA" target="_blank" rel="noopener noreferrer" class="bg-crema/10 text-parchment p-3 rounded-xl border border-parchment/20 flex items-center justify-center">
-      <i data-lucide="navigation" class="w-4 h-4"></i>
+      <i data-lucide="navigation" class="w-4 h-4 text-brass"></i>
     </a>
     <a href="tel:6198144243" class="bg-crema/10 text-parchment p-3 rounded-xl border border-parchment/20 flex items-center justify-center">
-      <i data-lucide="phone" class="w-4 h-4"></i>
+      <i data-lucide="phone" class="w-4 h-4 text-brass"></i>
     </a>
   </div>
 
   <!-- FOOTER -->
-  <footer class="bg-espresso text-parchment pt-16 pb-12 border-t border-espresso/20">
+  <footer class="bg-espresso text-parchment pt-16 pb-14 border-t border-parchment/10">
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex flex-col md:flex-row justify-between items-start gap-8 pb-12 border-b border-parchment/10">
-        <div>
-          <span class="font-serif text-2xl font-semibold tracking-tight text-crema">ACHILLES COFFEE ROASTERS</span>
-          <p class="text-parchment/60 text-xs font-mono tracking-widest uppercase mt-1">Gaslamp Quarter • San Diego, California</p>
+        <div class="flex items-center gap-4">
+          <img src="assets/images/achilles-logo.png" alt="Achilles Coffee Roasters" class="w-12 h-12 rounded-full border border-sand/40">
+          <div>
+            <span class="font-serif text-2xl font-bold tracking-tight text-crema">ACHILLES COFFEE ROASTERS</span>
+            <p class="text-parchment/60 text-xs font-mono tracking-widest uppercase mt-0.5">372 Fourth Ave • Gaslamp Quarter, San Diego, CA</p>
+          </div>
         </div>
         <div class="flex items-center gap-6 text-xs text-parchment/80 font-mono">
-          <a href="#about" class="hover:text-brass transition-colors">The Craft</a>
+          <a href="#about" class="hover:text-brass transition-colors">The Roastery</a>
           <a href="#menu" class="hover:text-brass transition-colors">Menu</a>
           <a href="#location" class="hover:text-brass transition-colors">Location</a>
-          <a href="https://achillescoffeeroasters.com" target="_blank" class="hover:text-brass transition-colors">Main Roastery Site</a>
+          <a href="https://achillescoffeeroasters.com" target="_blank" class="hover:text-brass transition-colors">Main Site</a>
         </div>
       </div>
       <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-[11px] font-mono text-parchment/50 gap-4">
         <p>&copy; 2026 Achilles Coffee Roasters. All rights reserved.</p>
-        <p>Curated for Gaslamp San Diego Coffee Lovers.</p>
+        <p>Handcrafted & Optimized for Gaslamp San Diego Coffee Lovers.</p>
       </div>
     </div>
   </footer>
 
-  <!-- SCRIPT FOR INTERACTIVE TABS, ICONS, LENIS & GSAP MOTION -->
+  <!-- SCRIPT FOR DYNAMIC STORE HOURS, ICONS, LENIS & GSAP MOTION -->
   <script>
     // 1. Initialize Lucide Icons
     lucide.createIcons();
 
-    // 2. Initialize Lenis Smooth Scroll (Studio Freight)
+    // 2. Real-Time San Diego (PST) Open / Closed Time Checker
+    function updateSanDiegoStoreStatus() {
+      const now = new Date();
+      // Format time in San Diego timezone (America/Los_Angeles)
+      const options = { timeZone: 'America/Los_Angeles', hour: 'numeric', minute: 'numeric', hour12: false };
+      const timeStr = new Intl.DateTimeFormat([], options).format(now);
+      const [hour, minute] = timeStr.split(':').map(Number);
+      const currentMinutes = hour * 60 + minute;
+
+      const openMinutes = 6 * 60 + 30; // 6:30 AM
+      const closeMinutes = 15 * 60;    // 3:00 PM
+
+      const statusDot = document.getElementById('statusDot');
+      const statusText = document.getElementById('statusText');
+
+      if (currentMinutes >= openMinutes && currentMinutes < closeMinutes) {
+        statusDot.className = 'inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse';
+        statusText.innerHTML = '<span class="text-emerald-400 font-bold">Open Now in Gaslamp</span> • Closes at 3:00 PM PST (Scratch Kitchen Open)';
+      } else {
+        statusDot.className = 'inline-block w-2.5 h-2.5 rounded-full bg-amber-500';
+        statusText.innerHTML = '<span class="text-amber-400 font-bold">Currently Closed</span> • Opens Daily at 6:30 AM PST (372 Fourth Ave)';
+      }
+    }
+    updateSanDiegoStoreStatus();
+
+    // 3. Initialize Lenis Smooth Scroll (Studio Freight)
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -654,12 +763,12 @@
     });
     gsap.ticker.lagSmoothing(0);
 
-    // 3. Editorial Scroll Entrance Animations (Subtle & Chill)
+    // 4. Subtle Editorial Scroll Entrance Animations
     gsap.utils.toArray('section').forEach((section) => {
       gsap.from(section, {
         opacity: 0,
-        y: 25,
-        duration: 0.9,
+        y: 20,
+        duration: 0.8,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: section,
@@ -669,7 +778,7 @@
       });
     });
 
-    // 4. Menu category filter with smooth fade
+    // 5. Menu Category Filter with Smooth Transitions
     function filterMenu(category) {
       const buttons = document.querySelectorAll('.tab-btn');
       buttons.forEach(btn => {
@@ -677,7 +786,7 @@
         btn.classList.add('bg-parchment', 'text-espresso');
       });
 
-      // Target active button
+      // Target active tab
       event.target.classList.remove('bg-parchment', 'text-espresso');
       event.target.classList.add('bg-espresso', 'text-crema');
 
@@ -685,7 +794,7 @@
       items.forEach(item => {
         if (category === 'all' || item.classList.contains(category)) {
           item.style.display = 'flex';
-          gsap.fromTo(item, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' });
+          gsap.fromTo(item, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' });
         } else {
           item.style.display = 'none';
         }
