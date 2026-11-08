@@ -39,6 +39,19 @@
   <link rel="icon" type="image/png" href="assets/images/achilles-logo.png">
   <link rel="apple-touch-icon" href="assets/images/achilles-logo.png">
 
+  <!-- GOOGLE ANALYTICS 4 (GA4) & GTM DATA LAYER -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ACHILLES921"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ACHILLES921', {
+      page_title: 'Achilles Coffee Roasters Gaslamp',
+      page_location: window.location.href,
+      send_page_view: true
+    });
+  </script>
+
   <!-- EDITORIAL TYPOGRAPHY PAIRING: Bodoni Moda + Cinzel + Plus Jakarta Sans + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
